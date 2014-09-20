@@ -13,7 +13,7 @@ This will trigger the browser extension and it will display an icon in your addr
 
 ![screenshot](doc/screen1.png)
 
-After you select the id you want to use to sign-in, the extension will sign a package with the cryptographyc challenge that looks like this:
+After you select the id you want to use to sign-in, the extension will sign a package, with the cryptographyc challenge, that looks like this:
 
 ```javascript
 {
