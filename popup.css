@@ -1,0 +1,39 @@
+body {
+	padding: 10px;
+}
+
+fieldset {
+	white-space: nowrap;
+}
+
+.pure-form select {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.pure-form legend {
+	text-align: right;
+}
+
+.pure-button-small {
+	font-size: 70%;
+}
+
+.pure-select-small {
+	padding-top: 0px;
+	padding-bottom: 4px;
+}
+
+.pure-button-signin {
+	background: rgb(28, 184, 65); /* this is a green */
+	color: white;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.small-link {
+	font-size: 70%;
+}
+
+#select_name {
+	min-width: 100px;
+}

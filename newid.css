@@ -1,0 +1,11 @@
+body {
+	padding: 20px;
+}
+
+#button_generate {
+	background: rgb(28, 184, 65); /* this is a green */
+	color: white;
+	font-size: 0.80em;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+

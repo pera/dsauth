@@ -1,0 +1,32 @@
+{
+	"manifest_version": 2,
+
+	"name": "dsauth",
+	"description": "digital signature authentication",
+	"version": "0.1",
+
+	"background" : {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+	"page_action": {
+		"default_icon": {
+			"19": "icon.png",
+			"38": "icon.png"
+		},
+		"default_title": "DSAuth available",
+		"default_popup": "popup.html"
+	},
+	"content_scripts" : [
+	{
+		"matches" : [
+			"file://*/*",
+			"http://*/*",
+			"https://*/*"
+		],
+		"js" : ["contentscript.js"],
+		"run_at" : "document_idle",
+		"all_frames" : false
+	}
+	]
+}
