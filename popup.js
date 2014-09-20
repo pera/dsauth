@@ -23,7 +23,7 @@ window.onload = function() {
 		var challenge = chrome.extension.getBackgroundPage().challenge;
 		var origin =  chrome.extension.getBackgroundPage().origin;
 		// here is the message:
-		var msg = JSON.stringify({challenge: challenge, origin: origin, id: select_name.value});
+		var msg = JSON.stringify({challenge: challenge, origin: origin, id: select_name.value, public_key: keypair.pub});
 
 		var hash = sjcl.hash.sha256.hash(msg);
 		var signed_msg = secret_key.sign(hash);
