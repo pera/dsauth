@@ -1,19 +1,19 @@
 dsauth
 ======
 
-This is a prototype for a web authentication protocol using [DSA](https://duckduckgo.com/Digital_Signature_Algorithm), i.e. password-less authentication for your website. It's a browser extension / add-on that uses [SJCL](https://github.com/bitwiseshiftleft/sjcl/)'s implementation of ECDSA to sign a challenge and send it to a RESTful web service in your own server. 
+This is a prototype for a web authentication protocol using [DSA](https://duckduckgo.com/Digital_Signature_Algorithm), i.e. password-less authentication for your website. It's a browser extension / add-on that uses [SJCL](https://github.com/bitwiseshiftleft/sjcl/)'s implementation of ECDSA to sign a challenge and send it to a RESTful web service in your own server that verifies the signature.
 
 Web pages that implement DSAuth must include a special meta tag on their HTML, like this:
 
 ```HTML
-<meta name="dsap" content="somerandomchallenge">
+<meta name="dsap" content="somerandomnonce">
 ```
 
 This will trigger the browser extension and it will display an icon in your address bar:
 
 ![screenshot](doc/screen1.png)
 
-After you select the id you want to use to sign-in, the extension will sign a package, with the cryptographyc challenge, that looks like this:
+After you select the id you want to use to sign-in, the extension will sign a package. It looks like this:
 
 ```javascript
 {
@@ -33,4 +33,4 @@ To generate new id's (an username=>keypair) the extension includes this user int
 
 ![screenshot](doc/screen2.png)
 
-*Disclamer:* this project is in a very-early stage of development: there is no formal specification, no auditories, no peer reviewed papers. This is just a weekend project; something I wanted to code various years ago for my own personal use. It's really buggy, so do not use it, yet :)
+*Disclamer:* this project is in a very-early stage of development: there is no formal specification, no auditories, no peer reviewed papers. This is just a weekend project; something I wanted to code various years ago for my own personal use. It's really buggy/insecure, so don't use it yet :-)
