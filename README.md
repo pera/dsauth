@@ -32,3 +32,5 @@ The `public_key` value is only used the first time to register the user in the s
 To generate new id's (an username=>keypair) the extension includes this user interface:
 
 ![screenshot](doc/screen2.png)
+
+*Disclamer:* this project is in a very-early stage of development: there is no formal specification, no auditories, no peer reviewed papers. This is just a weekend project; something I wanted to code various years ago for my own personal use. It's really buggy, so do not use it, yet :)
