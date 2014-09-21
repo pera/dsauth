@@ -28,10 +28,15 @@ window.onload = function() {
 		var hash = sjcl.hash.sha256.hash(msg);
 		var signed_msg = secret_key.sign(hash);
 
-		// send this:
+		// stringify this?
 		var packet = JSON.stringify({msg: msg, signature: sjcl.codec.base64.fromBits(signed_msg)});
-		console.log(packet);
 
-		/*window.close();*/
+		var http = new XMLHttpRequest();
+		http.open("POST", origin+"/dsap", true);
+		http.setRequestHeader("Content-type", "application/json");
+		http.send(packet);
+
+		window.close();
 	}
 };
+
