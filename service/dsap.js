@@ -1,6 +1,12 @@
 var http = require('http');
 var fs = require('fs');
 
+//var redis = require("redis");
+//var client = redis.createClient();
+
+var sjcl = require('./sjcl');
+var curve = sjcl.ecc.curves.k256;
+
 http.createServer(function (request, response) {
 	console.log('NEW CONNECTION');
 	if (request.method === 'POST') {
@@ -9,7 +15,17 @@ http.createServer(function (request, response) {
 			body += chunk;
 		});
 		request.on('end', function () {
-			console.log(body);
+			console.log("length: "+body.length);
+			var packet = JSON.parse(body);
+			var msg = JSON.parse(packet.msg);
+			console.log("id: "+msg.id);
+
+			var public_key = new sjcl.ecc.ecdsa.publicKey(curve, sjcl.codec.hex.toBits(msg.public_key));
+			var hash = sjcl.hash.sha256.hash(packet.msg);
+			var signature = sjcl.codec.base64.toBits(packet.signature);
+
+			response.writeHeader(200, {'Content-Type': 'text/plain'});
+			response.end("verify: "+public_key.verify(hash, signature));
 		});
 	} else {
 		response.writeHead(200, {'Content-Type': 'text/html'});

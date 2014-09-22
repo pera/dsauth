@@ -14,6 +14,14 @@ window.onload = function() {
 	}
 
 	button_signin.onclick = function() {
+		var container = document.getElementById("container");
+		for (var i=0; i<container.childNodes.length; i++) {
+			if (container.childNodes[i].nodeType === Node.ELEMENT_NODE) {
+				container.childNodes[i].style.visibility = "hidden";
+			}
+		}
+		container.style.background = "url('loading.svg') no-repeat center";
+
 		var keypair = JSON.parse(localStorage.getItem(select_name.value));
 		var curve = sjcl.ecc.curves.k256;
 		var public_key = new sjcl.ecc.ecdsa.publicKey(curve, sjcl.codec.hex.toBits(keypair.pub));
@@ -32,11 +40,19 @@ window.onload = function() {
 		var packet = JSON.stringify({msg: msg, signature: sjcl.codec.base64.fromBits(signed_msg)});
 
 		var http = new XMLHttpRequest();
+		http.onreadystatechange = function() {
+			if (http.readyState===4) {
+				//gets current tab id and send the packet to the content script
+				chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+					var port = chrome.tabs.connect(tabs[0].id);
+					port.postMessage(http.responseText);
+					window.close();
+				});
+			}
+		};
 		http.open("POST", origin+"/dsap", true);
 		http.setRequestHeader("Content-type", "application/json");
 		http.send(packet);
-
-		window.close();
-	}
+	};
 };
 

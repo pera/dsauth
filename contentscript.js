@@ -12,3 +12,10 @@ if (challenge) {
 	chrome.runtime.sendMessage({origin: window.location.origin, challenge: challenge});
 }
 
+chrome.runtime.onConnect.addListener(function(port){
+	//console.assert(port.name === "dsap");
+	console.log(port);
+	port.onMessage.addListener(function(msg){
+		console.log(msg);
+	});
+});
