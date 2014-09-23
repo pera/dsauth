@@ -27,7 +27,7 @@ After you select the id you want to use to sign-in, the extension will sign a pa
 }
 ```
 
-The `public_key` value is only used the first time to register the user in the server's database. After that it will always verify that the `signature` of the stringified JSON `msg` correspond to the public key on their db.
+The `public_key` value is only used the first time to register the user in the server's database. After that it will always verify that the `signature` of the stringified JSON `msg` correspond to the public key on their db. Then, if everything is ok, the server will return a JSON message containing a session cookie and a redirection page that the extension will apply automatically.
 
 To generate new id's (an username=>keypair) the extension includes this user interface:
 
