@@ -25,7 +25,11 @@ http.createServer(function (request, response) {
 			var signature = sjcl.codec.base64.toBits(packet.signature);
 
 			response.writeHeader(200, {'Content-Type': 'text/plain'});
-			response.end("verify: "+public_key.verify(hash, signature));
+			if (public_key.verify(hash, signature)) {
+				response.end(JSON.stringify({cookie: "session=1234567890;", redirect: "/"}));
+			} else {
+				response.end("error");
+			}
 		});
 	} else {
 		response.writeHead(200, {'Content-Type': 'text/html'});
