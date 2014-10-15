@@ -1,7 +1,7 @@
 dsauth
 ======
 
-This is a prototype for a web authentication protocol using [DSA](https://duckduckgo.com/Digital_Signature_Algorithm), i.e. password-less authentication for your website. It's a browser extension that uses [SJCL](https://github.com/bitwiseshiftleft/sjcl/)'s implementation of ECDSA to sign a challenge and send it to a RESTful web service in your own server that verifies the signature.
+This is a prototype for a web authentication protocol using [ECDSA](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm), i.e. password-less authentication for your website. It's a browser extension that uses [SJCL](https://github.com/bitwiseshiftleft/sjcl/)'s implementation of ECDSA to sign a challenge and send it to a RESTful web service in your own server that verifies the signature.
 
 Web pages that implement DSAuth must include a special meta tag on their HTML, like this:
 
